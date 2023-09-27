@@ -1,36 +1,52 @@
 import java.util.Scanner;
 
-public class BlackJack {
-    public static void main(String[] args) {
-        int qtd_players;
+public class BlackJack 
+{
+    public static void main(String[] args)
+    {
+        int num_players;
         Scanner input = new Scanner(System.in);
         DeckOfCards deck = new DeckOfCards();
 
         System.out.print("---BLACKJACK---");
-        System.out.print("\n\nQTD DE PLAYERS: ");
-        qtd_players = input.nextInt();
+        System.out.print("\n\nNUMERO DE JOGADORES: ");
+        num_players = input.nextInt();
 
-        for (int i = 1; i <= qtd_players; i++) {
-            Player idPlayer = new Player(i);
-            idPlayer.imprimeID();
-            for (int j = 1; j < qtd_players; j++) {
-                Card new_card = deck.dealCard();
-                idPlayer.setCard(new_card, i);
-                idPlayer.imprimeCards(qtd_players);
-            }
+        Player[] players = new Player[num_players];     // Create an array to store players
+        Dealer dealer = new Dealer();
+
+        for (int i = 0; i < num_players; i++)
+        {
+            players[i] = new Player(i);
         }
 
         DeckOfCards myDeckOfCards = new DeckOfCards();
         myDeckOfCards.shuffle(); // place Cards in random order
-      
-      // print all 52 Cards in the order in which they are dealt
-      for (int i = 1; i <= 52; i++){
-         // deal and display a Card
-         System.out.printf("%-19s", myDeckOfCards.dealCard());
 
-		 if (i % 4 == 0) // output a newline after every fourth card
-		    System.out.println();
+        for (int i = 0; i < 2; i++) 
+        {
+            System.out.printf("\n\n=-=RODADA %d=-=\n", i+1);
+            for (int j = 0; j < num_players; j++) 
+            {   
+                Card new_card = myDeckOfCards.dealCard();
+
+                players[j].printID();
+                players[j].setCard(new_card, i);
+                players[j].printCards();
+                players[j].hand_value = players[j].handValue(new_card);
+                System.out.printf("\nVALOR DA MAO: %d\n", players[j].hand_value);
+            }
+
+            Card new_card = deck.dealCard();
+
+            dealer.printID();
+            dealer.setCard(new_card, i);
+            dealer.printCardsStart();
+            dealer.hand_value = dealer.handValue(new_card);
+            //System.out.printf("\nVALOR DA MAO: %d", dealer.hand_value);
         }
-    input.close();
+
+        System.out.print("\n\n");
+        input.close();
     }
 }
