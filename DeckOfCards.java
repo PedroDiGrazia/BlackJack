@@ -11,10 +11,10 @@ public class DeckOfCards
    // constructor fills deck of Cards
    public DeckOfCards()
    {
-      String[] faces = {"Ace", "Deuce", "Three", "Four", "Five", "Six", 
-         "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King"};
+      String[] faces = {"As", "Dois", "Tres", "Quatro", "Cinco", "Seis", 
+         "Sete", "Oito", "Nove", "Dez", "Valete", "Dama", "Rei"};
 
-      String[] suits = {"Hearts", "Diamonds", "Clubs", "Spades"};
+      String[] suits = {"Copas", "Ouro", "Paus", "Espadas"};
 
       deck = new Card[NUMBER_OF_CARDS]; // create array of Card objects
       currentCard = 0; // first Card dealt will be deck[0]
@@ -54,8 +54,4 @@ public class DeckOfCards
          return null; // return null to indicate that all Cards were dealt
    } 
 
-   public void valueCard()
-   {
-      
-   }
 } // end class DeckOfCards
