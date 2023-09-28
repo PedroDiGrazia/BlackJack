@@ -69,10 +69,11 @@ public class Dealer
 
     public void printCardsEnd()
     {
-        for (int i = 0; i < 2; i++) 
+        int i = 0;
+        while(this.hand[i] != null)
         {
-            if(this.hand[i] != null)
-            System.out.printf("%s\n",this.hand[i]);   
+            System.out.printf("%s\n",this.hand[i]);
+            i++; 
         }
     }
 }
